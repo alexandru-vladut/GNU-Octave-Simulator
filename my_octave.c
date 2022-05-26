@@ -241,6 +241,35 @@ void eliberare_resurse(int ***col, int *linii, int *coloane, int nr)
 	free(coloane);
 }
 
+// caz A
+void adunare(int ****col, int **linii, int **coloane, int *nr) 
+{
+	int indice1, indice2;
+	scanf("%d%d", &indice1, &indice2);
+	if (indice1 < 0 || indice1 > *nr - 1 || indice2 < 0 || indice2 > *nr - 1) {
+		printf("No matrix with the given index\n");
+	} else if (((*linii)[indice1] != (*linii)[indice2]) || ((*linii)[indice1] != (*linii)[indice2])) {
+		printf("Cannot perform matrix addition\n");
+	} else {
+		int l = (*linii)[indice1];
+		int c = (*coloane)[indice1];
+
+		int **a = (*col)[indice1];
+		int **b = (*col)[indice2];
+
+		realocare(&(*col), &(*linii), &(*coloane), *nr);
+		(*col)[*nr] = alocare_matrice(l, c);
+		for (int i = 0; i < l; i++) {
+			for (int j = 0; j < c; j++) {
+				(*col)[*nr][i][j] = a[i][j] + b[i][j];
+			}
+		}
+		(*linii)[*nr] = l;
+		(*coloane)[*nr] = c;
+		(*nr)++;
+	}
+}
+
 int main(void)
 {
 	// ***col -> colectia de matrici
@@ -284,6 +313,9 @@ int main(void)
 			break;
 		case 'Q':
 			eliberare_resurse(col, linii, coloane, nr);
+			break;
+		case 'A':
+			adunare(&col, &linii, &coloane, &nr);
 			break;
 		case '\n':
 			break;
