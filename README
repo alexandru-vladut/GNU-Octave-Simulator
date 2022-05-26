@@ -1,8 +1,12 @@
-# Copyright Vladut Alexandru-Nicolae 312CAa 2021-2022
+===============================================================================
 
 In functia main(), prin intermediul instructiunii switch ... case, analizam
 litera data ca input pentru a sti ce actiune trebuie executata.
 Astfel, distingem urmatoarele cazuri:
+
+===============================================================================
+Functii anterior implementate
+===============================================================================
 
 	CAZUL 'L':
 		- efectuam o realocare a memoriei pentru colectia de matrice si
@@ -78,6 +82,44 @@ Astfel, distingem urmatoarele cazuri:
 		de dimensiuni;
 		- programul se incheie.
 
+===============================================================================
+Functii nou implementate
+===============================================================================
+
+    CAZUL 'A':
+        - functia realizeaza adunarea a doua matrici ce apartin colectiei,
+        citind de la tastatura indecsii din colectie ai matricelor
+    
+    CAZUL 'S':
+        - functia realizeaza inmultirea cu un scalar a unei matrici ce 
+        apartin colectiei, citind de la tastatura indexul din colectie
+        al matricei si scalarul cu care se va inmulti matricea
+
+    CAZUL 'W':
+        - functia realizeaza inmultirea element cu element a doua matrici,
+        asemanator operatiei '.*' din Octave
+
+    CAZUL 'Z':
+        - functia calculeaza in mod recursiv determinantul unei matrice
+        patratice, folosind formula de calcul cu minori
+
+    CAZUL 'Y':
+        - functia extrage o submatrice din una din matricile colectiei,
+        primind de la tastatura indicii de linie/coloana ale ferestrei
+        ce trebuie extrasa
+
+    CAZUL 'I':
+        - functia interschimba 2 linii/coloane ale unei matrice intre ele
+        in functie de variabila 'o': 1 reprezentand schimbul de linii, iar
+        2 schimbul de coloane
+
+    CAZUL 'U':
+        - functia determina matricele simetrice ce fac parte din colectie
+
+===============================================================================
+
 	CAZUL 'DEFAULT':
 		- daca litera introdusa nu este recunoscuta, se afiseaza mesajul
 		de eroare.
+
+===============================================================================
