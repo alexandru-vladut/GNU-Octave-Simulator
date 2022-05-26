@@ -270,6 +270,25 @@ void adunare(int ****col, int **linii, int **coloane, int *nr)
 	}
 }
 
+// caz S
+void scalar(int ****col, int *linii, int *coloane, int nr)
+{
+	int indice, scalar;
+	scanf("%d%d", &indice, &scalar);
+	if (indice < 0 || indice > nr - 1) {
+		printf("No matrix with the given index\n");
+	} else {
+		int l = linii[indice];
+		int c = coloane[indice];
+
+		for (int i = 0; i < l; i++) {
+			for (int j = 0; j < c; j++) {
+				(*col)[indice][i][j] *= scalar;
+			}
+		}
+	}
+}
+
 int main(void)
 {
 	// ***col -> colectia de matrici
@@ -316,6 +335,9 @@ int main(void)
 			break;
 		case 'A':
 			adunare(&col, &linii, &coloane, &nr);
+			break;
+		case 'S':
+			scalar(&col, linii, coloane, nr);
 			break;
 		case '\n':
 			break;
