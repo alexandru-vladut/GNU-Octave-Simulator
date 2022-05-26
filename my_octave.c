@@ -67,6 +67,38 @@ void realocare(int ****col, int **linii, int **coloane, int nr)
 	*coloane = realloc(*coloane, (nr + 1) * sizeof(int));
 }
 
+int det(int a[100][100], int n)
+{
+    int m[100][100];
+    int i, j, k, c1, c2;
+    int determinant = 0;
+    int O = 1;
+
+    if (n == 2) {
+        determinant = a[0][0] * a[1][1] - a[0][1] * a[1][0];
+        return determinant;
+    } else {
+        for (i = 0 ; i < n ; i++) {
+            c1 = 0, c2 = 0;
+            for (j = 0 ; j < n ; j++) {
+                for (k = 0 ; k < n ; k++) {
+                    if (j != 0 && k != i) {
+                        m[c1][c2] = a[j][k];
+                        c2++;
+                        if (c2 > n - 2) {
+                            c1++;
+                            c2 = 0;
+                        }
+                    }
+                }
+            }
+            determinant = determinant + O * (a[0][i] * det(m, n - 1));
+            O = -1 * O;
+        }
+    }
+    return determinant;
+}
+
 // caz D
 void dimensiuni(int *linii, int *coloane, int nr)
 {
@@ -318,6 +350,32 @@ void inmultire_element_wise(int ****col, int **linii, int **coloane, int *nr)
 	}
 }
 
+// caz Z
+void determinant(int ***col, int *linii, int *coloane, int nr)
+{
+	int indice;
+	scanf("%d", &indice);
+	if (indice < 0 || indice > nr - 1) {
+		printf("No matrix with the given index\n");
+	} else {
+		int l = linii[indice];
+		int c = coloane[indice];
+
+		if (l != c) {
+			printf("Matrix is not square\n");
+		} else {
+			int a[100][100];
+			for (int i = 0; i < l; i++) {
+				for (int j = 0; j < l; j++) {
+					a[i][j] = col[indice][i][j];
+				}
+			}
+			printf("%d\n", det(a, l));
+		}
+
+	}
+}
+
 int main(void)
 {
 	// ***col -> colectia de matrici
@@ -370,6 +428,9 @@ int main(void)
 			break;
 		case 'W':
 			inmultire_element_wise(&col, &linii, &coloane, &nr);
+			break;
+		case 'Z':
+			determinant(col, linii, coloane, nr);
 			break;
 		case '\n':
 			break;
