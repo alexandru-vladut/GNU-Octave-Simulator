@@ -1,5 +1,3 @@
-// Copyright Vladut Alexandru-Nicolae 312CAa 2021-2022
-
 #include <stdio.h>
 #include <stdlib.h>	
 #define M 10007
@@ -97,6 +95,12 @@ int det(int a[100][100], int n)
         }
     }
     return determinant;
+}
+
+void swap(int *x, int *y) {
+	int aux = *x;
+	*x = *y;
+	*y = aux;
 }
 
 // caz D
@@ -376,6 +380,43 @@ void determinant(int ***col, int *linii, int *coloane, int nr)
 	}
 }
 
+// caz Y
+void submatrix(int ****col, int **linii, int **coloane, int *nr) {
+	int indice, x1, x2, y1, y2;
+	scanf("%d%d%d%d%d", &indice, &x1, &x2, &y1, &y2);
+	if (indice < 0 || indice > *nr - 1) {
+		printf("No matrix with the given index\n");
+	} else {
+		int l = (*linii)[indice];
+		int c = (*coloane)[indice];
+		
+		if (x1 > x2)
+			swap(&x1, &x2);
+		if (y1 > y2)
+			swap(&y1, &y2);
+		
+		if (x1 < 0 || x2 >= l || y1 < 0 || y2 >= c)
+			printf("Line/column indexes out of bounds\n");
+		else {
+			int **a = (*col)[indice];
+
+			realocare(&(*col), &(*linii), &(*coloane), *nr);
+			(*col)[*nr] = alocare_matrice(x2 - x1 + 1, y2 - y1 + 1);
+			int contor_linie = 0;
+			for (int i = x1; i <= x2; i++) {
+				int contor_coloana = 0;
+				for (int j = y1; j <= y2; j++) {
+					(*col)[*nr][contor_linie][contor_coloana++] = a[i][j];
+				}
+				contor_linie++;
+			}
+			(*linii)[*nr] = x2 - x1 + 1;
+			(*coloane)[*nr] = y2 - y1 + 1;
+			(*nr)++;
+		}
+	}
+}
+
 int main(void)
 {
 	// ***col -> colectia de matrici
@@ -431,6 +472,9 @@ int main(void)
 			break;
 		case 'Z':
 			determinant(col, linii, coloane, nr);
+			break;
+		case 'Y':
+			submatrix(&col, &linii, &coloane, &nr);
 			break;
 		case '\n':
 			break;
