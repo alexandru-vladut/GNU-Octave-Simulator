@@ -456,6 +456,32 @@ void laneswap(int ****col, int *linii, int *coloane, int nr) {
 	}
 }
 
+// caz U
+void symetric(int ***col, int *linii, int *coloane, int nr)
+{
+	int no = 0;
+	for (int cnt = 0; cnt < nr; cnt++) {
+		int **a = col[cnt];
+		if (linii[cnt] != coloane[cnt])
+			continue;
+		int ok = 1;
+		for (int i = 1; i < linii[cnt]; i++) {
+			for (int j = 0; j < i; j++) {
+				if (a[i][j] != a[j][i]) {
+					ok = 0;
+				}
+			}
+		}
+		if (ok == 1) {
+			printf("%d ", cnt);
+			no++;
+		}
+	}
+	if (no == 0)
+		printf("No symetric matrix");
+	printf("\n");
+}
+
 int main(void)
 {
 	// ***col -> colectia de matrici
@@ -517,6 +543,9 @@ int main(void)
 			break;
 		case 'I':
 			laneswap(&col, linii, coloane, nr);
+			break;
+		case 'U':
+			symetric(col, linii, coloane, nr);
 			break;
 		case '\n':
 			break;
