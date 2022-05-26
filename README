@@ -1,0 +1,83 @@
+# Copyright Vladut Alexandru-Nicolae 312CAa 2021-2022
+
+In functia main(), prin intermediul instructiunii switch ... case, analizam
+litera data ca input pentru a sti ce actiune trebuie executata.
+Astfel, distingem urmatoarele cazuri:
+
+	CAZUL 'L':
+		- efectuam o realocare a memoriei pentru colectia de matrice si
+		pentru vectorii care stocheaza numarul de linii, respectiv coloane,
+		cu scopul de a adauga un nou element in acestia;
+		- alocam memorie dinamic pentru matricea ce urmeaza a fi introdusa,
+		folosind o functie de alocare;
+		- noua matrice va fi introdusa cu ajutorul unei functii de citire.
+
+	CAZUL 'D':
+		- toate instructiunile sunt implementate prin functia "dimensiuni",
+		care afiseaza fie mesajul de eroare, fie dimensiunile matricei
+		respective.
+
+	CAZUL 'P':
+		- toate instructiunile sunt implementate prin functia "afisare", care
+		afiseaza fie mesajul de eroare, fie elementele matricei respective
+		(folosind o functie ajutatoare de afisare).
+
+	CAZUL 'C':
+		- toate instructiunile sunt implementate prin functia "redimensionare";
+		- in aceasta, se realizeaza mai intai citirea datelor de intrare, dar
+		si alocarea dinamica a memoriei pentru vectorii responsabili cu
+		memorarea indicilor;
+		- in functie de indicele primit pentru matrice, afisam fie un mesaj de
+		eroare, fie:
+			- realizam redimensionarea si permutarile cerute cu ajutorul
+			unei matrici auxiliare alocata dinamic;
+			- eliberam memoria nou alocata;
+			- realizam modificarile in colectia de matrice si in vectorii care
+			stocheaza dimensiunile.
+		- eliberam memoria alocata vectorilor responsabili cu memorarea
+		indicilor.
+
+	CAZUL 'M':
+		- toate instructiunile sunt implementate prin functia "inmultire";
+		- in aceasta, fie afisam unul dintre mesajele de eroare, fie realocam
+		memorie pentru colectie si vectorii care memoreaza dimensiunile, cu
+		scopul de a adauga matricea nou formata (prin inmultirea celor cerute).
+
+	CAZUL 'O':
+		- toate instructiunile sunt implementate prin functia "sortare";
+		- in aceasta, alocam memorie dinamic pentru un vector care va retine
+		sumele elementelor matricelor, sume calculate cu ajutorul unei functii
+		suplimentare;
+		- realizam sortarea colectiilor si a vectorilor care retin dimensiunile
+		prin interschimbarea adreselor indicate de pointeri;
+		- eliberam memoria alocata vectorului de sume.
+
+	CAZUL 'T':
+		- toate instructiunile sunt implementate prin functia "transpusa";
+		- in aceasta, fie afisam un mesaj de eroare, fie:
+			- calculam matricea transpusa, folosind o matrice auxiliara alocata
+			dinamic;
+			- inlocuim in colectie matricea indicata cu transpusa ei si
+			eliberam memoria alocata in plus;
+			- interschimbam numarul de linii cu cel de coloane.
+
+	CAZUL 'F':
+		- toate instructiunile sunt implementate prin functia
+		"eliminare_indice";
+		- in aceasta, fie afisam un mesaj de eroare, fie:
+			- eliberam memoria alocata matricei indicate;
+			- modificam pointerii respectivi astfel incat sa indice catre
+			matricea urmatoare;
+			- realocam memoria colectiei si a vectorilor de dimensiuni,
+			micsorand numarul de elemente al acestora.
+
+	CAZUL 'Q':
+		- toate instructiunile sunt implementate prin functia
+		"eliberare_resurse";
+		- in aceasta, eliberam memoria alocata colectiei si vectorilor
+		de dimensiuni;
+		- programul se incheie.
+
+	CAZUL 'DEFAULT':
+		- daca litera introdusa nu este recunoscuta, se afiseaza mesajul
+		de eroare.
