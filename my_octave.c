@@ -417,6 +417,45 @@ void submatrix(int ****col, int **linii, int **coloane, int *nr) {
 	}
 }
 
+// caz I
+void laneswap(int ****col, int *linii, int *coloane, int nr) {
+	int indice, x1, x2, o;
+	scanf("%d%d%d%d", &indice, &x1, &x2, &o);
+	if (indice < 0 || indice > nr - 1) {
+		printf("No matrix with the given index\n");
+	} else {
+		int l = linii[indice];
+		int c = coloane[indice];
+		
+		if (x1 > x2)
+			swap(&x1, &x2);
+		
+		if (o == 1) { // swap lines
+			if (x1 < 0 || x2 >= l)
+				printf("Line indexes out of bounds\n");
+			else {
+				int **a = (*col)[indice];
+				for (int j = 0; j < c; j++) {
+					swap(&a[x1][j], &a[x2][j]);
+				}
+			}
+		}
+		else if (o == 2) { // swap columns
+			if (x1 < 0 || x2 >= c)
+				printf("Column indexes out of bounds\n");
+			else {
+				int **a = (*col)[indice];
+				for (int i = 0; i < l; i++) {
+					swap(&a[i][x1], &a[i][x2]);
+				}
+			}
+		}
+		else {
+			printf("Unknown orienting\n");
+		}
+	}
+}
+
 int main(void)
 {
 	// ***col -> colectia de matrici
@@ -475,6 +514,9 @@ int main(void)
 			break;
 		case 'Y':
 			submatrix(&col, &linii, &coloane, &nr);
+			break;
+		case 'I':
+			laneswap(&col, linii, coloane, nr);
 			break;
 		case '\n':
 			break;
